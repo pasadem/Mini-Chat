@@ -3,8 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import {
   Container, Row, Col, Card, Form, Button,
 } from 'react-bootstrap';
-import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -18,7 +16,6 @@ const validationSchema = yup.object().shape({
 });
 
 const Login = () => {
-  const { t } = useTranslation();
   const auth = useAuth();
   let navigate = useNavigate();
   const [authFailed, setAuthFailed] = useState(false);
