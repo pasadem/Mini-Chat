@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 import { Container, Button, Navbar, Nav } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
+
 
 import LoginPage from './LoginPage.jsx';
 import ChatPage from './ChatPage.jsx';
@@ -28,12 +28,12 @@ const LoginVerification = () => {
   return <LoginPage />;
 };
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children, path }) => {
   const auth = useAuth();
 
   return (
     <Route
-      path="/chat"
+      path={path}
       render={() => (auth.loggedIn
         ? children
         : <Navigate to="/login" />)}
@@ -42,16 +42,14 @@ const PrivateRoute = ({ children }) => {
 };
 
 const AuthButton = () => {
-  const { t } = useTranslation();
   const auth = useAuth();
   if (!auth.loggedIn) {
     return null;
   }
-  return (<Button variant="outline-secondary" onClick={auth.logOut}>{t('logoutButton')}</Button>);
+  return (<Button variant="outline-secondary" onClick={auth.logOut}>{'Выйти'}</Button>);
 };
 
 const App = () => {
-  const { t } = useTranslation();
   
   
 
@@ -61,7 +59,7 @@ const App = () => {
         <div className="d-flex flex-column h-100">
           <Navbar className="bg-white shadow-sm">
             <Container>
-              <Link to="/" className="navbar-brand">{t('title')}</Link>
+              <Link to="/" className="navbar-brand">{'Чат'}</Link>
               <AuthButton />
             </Container>
           </Navbar>
@@ -71,6 +69,7 @@ const App = () => {
               <Signup />
             </Route> */}
             <Route
+            path="/chat"
             element={(
               <PrivateRoute children={<ChatPage />} path="/chat" />
             )}
