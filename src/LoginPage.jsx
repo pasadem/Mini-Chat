@@ -29,11 +29,9 @@ const Login = () => {
       const { token, username } = data;
       console.log(username)
       auth.logIn(token, username);
-      navigate('/chat');
+      navigate('/');
     } catch (error) {
-      if (!error.response) {
-        toast(t('loginForm.toasts.connectionError'));
-      }
+      
       if (error.response.status === 401) {
         setAuthFailed(true);
       }
@@ -69,13 +67,13 @@ const Login = () => {
           <Card>
             <Card.Body className="p-5">
               <Form noValidate onSubmit={f.handleSubmit} className="col-md-6 mt-3 mb-0">
-                <h2 className="text-center mb-4">{t('loginForm.header')}</h2>
+                <h2 className="text-center mb-4">{'Войти'}</h2>
                 <Form.Group className="form-floating mb-4">
                   <Form.Control
                     name="username"
                     autoComplete="username"
                     required
-                    placeholder={t('loginForm.username')}
+                    placeholder={'Ваш ник'}
                     id="username"
                     isInvalid={authFailed}
                     onChange={f.handleChange}
@@ -83,7 +81,7 @@ const Login = () => {
                     autoFocus
                   />
                   <Form.Label htmlFor="username">
-                    {t('loginForm.username')}
+                    {'Ваш ник'}
                   </Form.Label>
                 </Form.Group>
                 <Form.Group className="form-floating mb-4">
@@ -96,19 +94,19 @@ const Login = () => {
                     isInvalid={authFailed}
                     onChange={f.handleChange}
                     value={f.values.password}
-                    placeholder={t('loginForm.password')}
+                    placeholder={'Пароль'}
                   />
                   <Form.Label htmlFor="password">
-                    {t('loginForm.password')}
+                    {'Пароль'}
                   </Form.Label>
-                  {authFailed && <Form.Control.Feedback type="invalid" className="invalid-tooltip">{t('loginForm.errors.authFail')}</Form.Control.Feedback>}
+                  {authFailed && <Form.Control.Feedback type="invalid" className="invalid-tooltip">{'Неверный пароль или логин'}</Form.Control.Feedback>}
                 </Form.Group>
-                <Button variant="outline-primary" type="submit" className="w-100 mb-3">{t('loginForm.submit')}</Button>
+                <Button variant="outline-primary" type="submit" className="w-100 mb-3">{'Войти'}</Button>
               </Form>
             </Card.Body>
             <Card.Footer className="p-4">
               <div className="text-center">
-                <Link to="/signup">{t('loginForm.signupLink')}</Link>
+                <Link to="/signup">{'Зарегистрироваться'}</Link>
               </div>
             </Card.Footer>
           </Card>
