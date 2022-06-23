@@ -28,7 +28,9 @@ const Login = () => {
       auth.logIn(token, username);
       navigate('/');
     } catch (error) {
-      
+      if (!error.response) {
+        toast('Проблемы с сетью');
+      }
       if (error.response.status === 401) {
         setAuthFailed(true);
       }

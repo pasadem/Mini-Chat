@@ -28,25 +28,24 @@ const LoginVerification = () => {
   return <LoginPage />;
 };
 
-const PrivateRoute = ({ children, path }) => {
+const PrivateRoute = ({ children }) => {
   const auth = useAuth();
+  const location = useLocation();
 
   return (
-    <Route
-      path={path}
-      render={() => (auth.loggedIn
+     auth.loggedIn
         ? children
-        : <Navigate to="/login" />)}
-    />
+        : <Navigate to="/login"  state={{ from: location }} />
   );
 };
 
 const AuthButton = () => {
   const auth = useAuth();
-  if (!auth.loggedIn) {
-    return null;
-  }
-  return (<Button variant="outline-secondary" onClick={auth.logOut}>{'Выйти'}</Button>);
+  
+   
+  return (auth.loggedIn
+    ? <Button onClick={auth.logOut}>Выйти</Button>
+    : <Button as={Link} to="/login" state={{ from: location }}>Log in</Button>)
 };
 
 const App = () => {
@@ -71,7 +70,9 @@ const App = () => {
             <Route
             path="/chat"
             element={(
-              <PrivateRoute children={<ChatPage />} path="/chat" />
+              <PrivateRoute>
+                <ChatPage />
+              </PrivateRoute>
             )}
           />
             <Route path="*" element={<NoMatch />} />

@@ -1,18 +1,19 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import { Navigate } from 'react-router-dom';
 import authContext from './contexts/index.jsx';
 
 const AuthProvider = ({ children }) => {
   const { token, username } = JSON.parse(localStorage.getItem('user')) || {};
   const [loggedIn, setLoggedIn] = useState(!!token);
 
-  const logIn = useCallback((fetchedToken, fetchedUsername) => {
-    localStorage.setItem('user', JSON.stringify({ token: fetchedToken, username: fetchedUsername }));
+  const logIn = () => {
+    localStorage.setItem('user', JSON.stringify({ token, username }));
     setLoggedIn(true);
-  }, []);
-  const logOut = useCallback(() => {
+  };
+  const logOut = () => {
     localStorage.removeItem('user');
     setLoggedIn(false);
-  }, []);
+  };
 
   const value = useMemo(() => ({
     loggedIn,
