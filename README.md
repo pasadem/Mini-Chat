@@ -2,9 +2,9 @@
 
 [![github action status](https://github.com/hexlet-components/projects-frontend-l4-server/workflows/Node%20CI/badge.svg)](../../actions)
 
-## Requirements
+### Demo
 
-* [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+* [Chat App](https://front-end-lvl4.herokuapp.com/login)
 
 ## Install
 
