@@ -14,6 +14,14 @@ export default function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const getAuthHeader = () => {
+    if (userId && userId.token) {
+      return { Authorization: `Bearer ${userId.token}` };
+    }
+
+    return {};
+  };
+
   const value = useMemo(() => ({
     logIn,
     logOut,

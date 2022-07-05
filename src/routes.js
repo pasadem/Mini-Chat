@@ -10,8 +10,8 @@ export default {
   loginPath: () => [host, prefix, 'login'].join('/'),
   dataPath: () => [host, prefix, 'data'].join('/'),
   signupPath: () => [host, prefix, 'signup'].join('/'),
-  signupPage: () => [host, 'signup'].join('/'),
-  mainPage: () => [host, '/'].join(''),
-  loginPage: () => [host, 'login'].join('/'),
+  signupPagePath: () => [host, 'signup'].join('/'),
+  homePagePath: () => [host, '/'].join(''),
+  loginPagePath: () => [host, 'login'].join('/'),
   notFoundPage: () => [host, '*'].join('/'),
 };

@@ -1,22 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import {
-  Card, Button, Form, Container,
+  Card, Button, Form, Container, Row, Col
 } from 'react-bootstrap';
-import { Formik, Field } from 'formik';
+import { Formik, Field, useFormik } from 'formik';
 import axios from 'axios';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/useAuth.jsx';
+import { useAuth } from '../hooks/index.js';
 import routes from '../routes.js';
 import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const auth = useAuth();
-  const { t } = useTranslation;
+  const { t } = useTranslation();
   const [authFailed, setAuthFailed] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   
   const f = useFormik({
     initialValues: { username: '', password: ''},
@@ -27,6 +26,7 @@ const LoginForm = () => {
       setAuthFailed(false)
       const res = await axios.post(routes.loginPath(), { username, password });
       const { data: { token }} = res;
+      console.log(token)
       auth.logIn({ token, username });
       f.resetForm();
 

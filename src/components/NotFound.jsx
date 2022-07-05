@@ -1,9 +1,9 @@
 import React from 'react';
 
-const NoMatch = () => (
+const NotFound = () => (
   <p>
     Page not found
   </p>
 );
 
-export default NoMatch;
+export default NotFound;

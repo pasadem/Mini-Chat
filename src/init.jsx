@@ -1,18 +1,17 @@
 import React from 'react';
-import i18n from 'i18next';
+import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
-import Rollbar from 'rollbar';
 import { Provider } from 'react-redux';
 import { setLocale } from 'yup';
 import { actions as channelsActions } from './slices/channelsSlice.js';
 import { actions as messagesActions } from './slices/messagesSlice.js';
-import AuthProvider from './contexts/AuthProvider.jsx';
-import filter from 'leo-profanity';
+import AuthProvider from './components/providers/AuthProvider.jsx';
 import resources from './locales/index.js';
 import store from './slices/index.js';
 import App from './components/App.jsx';
-import { apiContext } from './contexts/ChatApiProvider.jsx';
+import { ApiContext } from './contexts/index.js';
+
 
 const rollbarConfig = {
   accessToken: process.env.POST_CLIENT_ITEM_ACCESS_TOKEN,
@@ -23,20 +22,17 @@ const rollbarConfig = {
   },
 };
 
+const defaultLanguage = 'ru';
 
 export default async (socket) => {
-  const defaultLanguage = 'ru';
 
-  i18n
+  const i18n = i18next.createInstance();
+  await i18n
     .use(initReactI18next)
     .init({
      resources,
       lng: defaultLanguage,
       debug: process.env.NODE_ENV === 'development',
-
-      interpolation: {
-        escapeValue: false, 
-      },
     });
 
   setLocale({
@@ -44,10 +40,6 @@ export default async (socket) => {
       required: 'errors.required',
     },
   });
-
-  filter.clearList();
-  filter.add(filter.getDictionary('en'));
-  filter.add(filter.getDictionary('ru'));
 
   socket.on('newMessage', (message) => {
     store.dispatch(messagesActions.addMessage(message));
@@ -112,20 +104,20 @@ export default async (socket) => {
     renameChannel,
     deleteChannel,
   };
-
+  
   return (
-    <Provider store={store}>
-      <RollbarProvider config={rollbarConfig}>
-        <ErrorBoundary>
-          <I18nextProvider i18n={i18n}>
-            <ApiContext.Provider value={apiActions}>
-              <AuthProvider>
-                <App />
-              </AuthProvider>
-            </ApiContext.Provider>
-          </I18nextProvider>
-        </ErrorBoundary>
-      </RollbarProvider>
-    </Provider>
+      <Provider store={store}>
+        <RollbarProvider config={rollbarConfig}>
+          <ErrorBoundary>
+            <I18nextProvider i18n={i18n}>
+              <ApiContext.Provider value={apiActions}>
+                <AuthProvider>
+                  <App />
+                </AuthProvider>
+              </ApiContext.Provider>
+            </I18nextProvider>
+          </ErrorBoundary>
+        </RollbarProvider>
+      </Provider>
   );
 };
