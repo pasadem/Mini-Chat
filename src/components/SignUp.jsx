@@ -91,7 +91,7 @@ function SignUp() {
                           ref={usernameRef}
                         />
                         {errors.username && (
-                        <Form.Control.Feedback type="invalid">
+                        <Form.Control.Feedback type="invalid" id="invalidUsername">
                           {t(errors.username)}
                         </Form.Control.Feedback>
                         )}

@@ -67,6 +67,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@jest/globals": "^27.5.1",
+    "@playwright/test": "^1.23.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.6.0",
     "dotenv-webpack": "^7.1.0",
