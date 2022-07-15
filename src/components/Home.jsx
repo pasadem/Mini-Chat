@@ -37,7 +37,9 @@ function Home() {
     dispatch(fetchInitialData(auth.user.token));
     return undefined;
   }, [auth.user, dispatch]);
-
+  
+  console.log(fetchInitialData(auth.user.token)
+  
   const channels = useSelector(channelsSelectors.selectAll);
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const loadingState = useSelector((state) => state.channels.loading);
