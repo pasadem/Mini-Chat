@@ -1,4 +1,4 @@
-# Mini-chat
+# project-front-end-lvl4
 
 [![github action status](https://github.com/hexlet-components/projects-frontend-l4-server/workflows/Node%20CI/badge.svg)](../../actions)
 
