@@ -8,7 +8,7 @@ filterProfanity.add(filterProfanity.getDictionary('ru'));
 const Messages = ({ channelId }) => {
     const messages = useSelector(messageSelectors.selectAll)
       .filter((message) => message.channelId === channelId);
-
+console.log(messages)
     return ( 
       <>
       {messages.map(({ username, text, id }) => (
