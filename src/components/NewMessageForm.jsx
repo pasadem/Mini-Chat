@@ -22,7 +22,7 @@ const NewMessageForm = ({ isLoading }) => {
     },
     onSubmit: (values) => {
       const { newMessage } = values;
-      const { username } = auth.name;
+      const { username } = auth.user;
       const channelId = currentChannelId;
       const newPromise = new Promise((resolve) => {
         const message = {
