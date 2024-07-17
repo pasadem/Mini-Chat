@@ -1,5 +1,5 @@
 {
-  "name": "mini-chat",
+  "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![github action status](https://github.com/hexlet-components/projects-frontend-l4-server/workflows/Node%20CI/badge.svg)](../../actions)",
   "main": "index.js",
