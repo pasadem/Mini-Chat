@@ -1,7 +1,8 @@
 install: install-deps
 
 start:
-	heroku local -f Procfile.dev
+	npx webpack serve
+
 
 start-backend:
 	npm start --watch --verbose-watch
