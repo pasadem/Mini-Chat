@@ -1,11 +1,17 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![github action status](https://github.com/hexlet-components/projects-frontend-l4-server/workflows/Node%20CI/badge.svg)](../../actions)",
+  "description": "Project Chat",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build --prefix frontend",
+    "start": "npx start-server -s ./frontend/build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd frontend && npm ci"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Konstantin Kolmakov",
+  "license": "ISC",
+  "dependencies": {
+    "@hexlet/chat-server": "^2.0.2"
+  }
 }
