@@ -1,6 +1,7 @@
 # project-front-end-lvl4
 
 [![github action status](https://github.com/hexlet-components/projects-frontend-l4-server/workflows/Node%20CI/badge.svg)](../../actions)
+[![hexlet-check](https://github.com/pasadem/Mini-Chat/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/pasadem/Mini-Chat/actions/workflows/hexlet-check.yml)
 
 ### Demo
 
