@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@hexlet/chat-server": "^2.0.2"
+  },
+  "devDependencies": {
+    "mini-css-extract-plugin": "^2.9.0"
   }
 }
